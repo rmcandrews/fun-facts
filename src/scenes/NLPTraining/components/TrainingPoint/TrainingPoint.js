@@ -42,6 +42,9 @@ const styles = theme => ({
     button: {
         margin: 0,
     },
+    editButton: {
+        float: 'right'
+    }
 });
 
 class TrainingPoint extends Component {
@@ -86,8 +89,8 @@ class TrainingPoint extends Component {
         let subject;
         if(this.state.editMode) {
             subject = (
-                <span style={{ marginTop: '-1rem', marginBottom: '-0.9rem', display: 'inline-block' }}>
-                    <Input style={{width: '70%'}}onChange={this.setSubject} value={this.state.subject}/>
+                <span style={{ marginTop: '-1rem', marginBottom: '-0.9rem', display: 'inline-block', width: '100%' }}>
+                    <Input style={{width: '70%'}} onChange={this.setSubject} value={this.state.subject}/>
                     <IconButton aria-label="save" onClick={this.stopEditing}><SaveIcon/></IconButton>
                 </span>
             )
@@ -104,6 +107,8 @@ class TrainingPoint extends Component {
                     <Typography>{this.props.data.comment}</Typography>
                     <Divider className={classes.divider}/>
                     {subject}
+                    <Divider className={classes.divider}/>
+                    <Typography>{this.props.data.subreddit}</Typography>
                 </div>
                 <div className={classes.controls}>
                     <div className={classes.buttons}>
