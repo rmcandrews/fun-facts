@@ -21,5 +21,6 @@
   },
   "devDependencies": {
     "gh-pages": "^1.1.0"
-  }
+  },
+  "homepage": "http://rmcandrews.github.io/fun-facts"
 }
