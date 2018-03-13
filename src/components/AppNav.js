@@ -10,9 +10,14 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
-import { mailFolderListItems } from './tileData';
+import { Link } from 'react-router-dom';
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import FactIcon from 'material-ui-icons/LightbulbOutline';
+import StatsIcon from 'material-ui-icons/TrendingUp';
+import FactCheckIcon from 'material-ui-icons/Spellcheck';
+import TrainingIcon from 'material-ui-icons/FitnessCenter';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({
   root: {
@@ -66,7 +71,34 @@ class AppNav extends React.Component {
       <div>
         <div className={classes.toolbar}/>
         <Divider />
-        <List>{mailFolderListItems}</List>
+        <List>
+          <div>
+            <ListItem component={Link} to="/facts" onClick={this.handleDrawerToggle} button>
+              <ListItemIcon>
+                <FactIcon />
+              </ListItemIcon>
+              <ListItemText primary="Facts"/>
+            </ListItem>
+            <ListItem component={Link} to="/stats" onClick={this.handleDrawerToggle} button>
+              <ListItemIcon>
+                <StatsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Stats"/>
+            </ListItem>
+            <ListItem component={Link} to="/fact-checker" onClick={this.handleDrawerToggle} button>
+              <ListItemIcon>
+                <FactCheckIcon />
+              </ListItemIcon>
+              <ListItemText primary="Fact Check"/>
+            </ListItem>
+            <ListItem component={Link} to="/nlp-training" onClick={this.handleDrawerToggle} button>
+              <ListItemIcon>
+                <TrainingIcon />
+              </ListItemIcon>
+              <ListItemText primary="NLP Training"/>
+            </ListItem>
+          </div>
+        </List>
       </div>
     );
 

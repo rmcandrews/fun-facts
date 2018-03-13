@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TrainingPoint from './components/TrainingPoint/TrainingPoint';
+import Loader from 'components/Loader';
+import Typography from 'material-ui/Typography';
 
 class NLPTraining extends Component {
 
@@ -31,16 +33,27 @@ class NLPTraining extends Component {
     }
 
     render() {
-        if(!this.state.loaded) return <div>Loading</div> 
-        if(this.state.error) return <div>{this.state.error.toString()}</div>
-        if(this.state.data.length === 0) return <div>Nothing to see right now</div>
-        
-        const listItems = this.state.data.map((data) =>
-            <TrainingPoint key={data.id} data={data} remove={this.removeChild}/>
-        );
+        let content;
+        if(!this.state.loaded) {
+            content = <div><Loader/></div>;
+        } else if(this.state.error) {
+            content = <Typography variant="subheading" align="center" color="error">Something bad happened</Typography>;
+        } else if(this.state.data.length === 0) {
+            content = <Typography variant="subheading" align="center" color="textSecondary">Nothing to see right now</Typography>;
+        } else {
+            content = this.state.data.map((data) => <TrainingPoint key={data.id} data={data} remove={this.removeChild}/>);
+        }
+
         return (
             <div>
-                {listItems}
+                <Typography 
+                    variant="headline" 
+                    align="center"
+                    style={{marginBottom: '1rem'}}
+                    noWrap>
+                    NLP Training
+                </Typography>
+                {content}
             </div>
         );
     }
